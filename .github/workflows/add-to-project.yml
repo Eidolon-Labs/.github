@@ -1,0 +1,26 @@
+name: Auto Add to Project
+
+on:
+  issues:
+    types:
+      - opened
+  pull_request:
+    types:
+      - opened
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  project: write
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add issue or PR to the organization project
+        uses: actions/add-to-project@v1
+        with:
+          project-url: https://github.com/orgs/Eidolon-Labs/projects/2
+          github-token: ${{ secrets.GITHUB_TOKEN }}
